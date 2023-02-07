@@ -52,10 +52,10 @@ def train(config, training_config):
     trainer = Trainer(
         model,
         training_args,
-        train_datasets=train_datasets,
+        train_dataset=train_datasets,
         eval_dataset=eval_datasets,
         data_collator=data_collator,
-        tokenie=tokenizer,
+        tokenizer=tokenizer,
         compute_metrics=metric.compute_seqeval
     )
 

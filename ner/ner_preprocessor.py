@@ -18,7 +18,7 @@ def read_json(file_name):
     df = pd.DataFrame(dict(data=form, label=ne)) 
     return df
     
-def arrange_data(random_state=42):
+def arrange_data():
     data = list()
     data_path = '/Users/simso/Project/ner/data/json/'
     path1 = os.listdir(data_path + '21_150tags_NamedEntity/SXNE21')
@@ -27,8 +27,9 @@ def arrange_data(random_state=42):
         temp_data = read_json(file_name)
         data.append(temp_data)
     all_data = pd.concat(data)
-    train_data, eval_data = train_test_split(all_data, test_size=0.2, random_state=random_state)
-    train_data.to_csv("data/train_data.csv", sep="\t", index=False)
-    eval_data.to_csv("data/eval_data.csv", sep="\t", index=False)
+    # train_data, eval_data = train_test_split(all_data, test_size=0.2, random_state=random_state)
+    # train_data.to_csv("data/train_data.csv", sep="\t", index=False)
+    # eval_data.to_csv("data/eval_data.csv", sep="\t", index=False)
+    all_data.to_csv("../data/ner_data.csv", sep='\t', index=False)
 
 arrange_data()
