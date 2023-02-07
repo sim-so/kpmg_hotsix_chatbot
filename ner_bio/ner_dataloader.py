@@ -41,15 +41,11 @@ class DataloaderForNER():
         self.random_state=42
 
     def load_data(self):
-        dataset = load_dataset("csv", data_files="data/ner_data.csv", sep="\t", split="train")
+        dataset = load_dataset("csv", data_files="../data/ner_data.csv", sep="\t", split="train")
         dataset = dataset.map(partial(self.BIO_tagging), batched=False).remove_columns(["data", "label"])
         dataset = dataset.filter(lambda x: len(x["labels"]) != 0)
         dataset = dataset.train_test_split(test_size=0.2, shuffle=True, seed=self.random_state)
         print(dataset)
-        # train_dataset = dataset["train"].map(partial(self.BIO_tagging), batched=False).remove_columns(["data", "label"])
-        # train_dataset = train_dataset.filter(lambda x: x["labels"] == None)
-        # eval_dataset = dataset["eval"].map(partial(self.BIO_tagging), batched=False).remove_columns(["data", "label"])
-        # eval_dataset = eval_dataset.filter(lambda x: x["labels"] == None)
         return dataset["train"], dataset["test"]
 
     def BIO_tagging(self, example):

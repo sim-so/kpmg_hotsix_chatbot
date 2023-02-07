@@ -18,7 +18,7 @@ class Seqeval():
         eval_results = dict(
             precision=results["overall_precision"],
             recall=results["overall_recall"],
-            f1=results,
+            f1=results["overall_f1"],
             accuracy=results["overall_accuracy"]
         )
         return eval_results
