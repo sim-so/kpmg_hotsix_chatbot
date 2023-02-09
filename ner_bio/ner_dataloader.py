@@ -58,6 +58,7 @@ class DataloaderForNER():
             label_tag_list = [label["label"][:2] for label in label_list if label["label"][:2] in self.tag_list]
         else:
             label_tag_list = [label["label"] for label in label_list if label["label"] in self.tag_list]
+
         if len(label_tag_list) < 1:
             return dict(
                 input_ids=[],

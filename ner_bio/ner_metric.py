@@ -17,6 +17,7 @@ class Seqeval():
                        for prediction, label in zip(predictions, labels)]
         results = self.metric.compute(predictions=true_predictions, references=true_labels)
         print(classification_report(true_labels, true_predictions))
+
         eval_results = dict(
             precision=results["overall_precision"],
             recall=results["overall_recall"],
